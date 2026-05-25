@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Chat
 
-## Getting Started
+A beautiful, modern, and minimalist chat interface for **free AI models**.
 
-First, run the development server:
+Built with Next.js and designed for a delightful experience — no clutter, just great conversations with powerful free models from OpenRouter.
+
+**[Live Demo](https://ai-chat-liart-pi.vercel.app)**
+
+![AI Chat Interface](https://github.com/user-attachments/assets/placeholder)  
+<!-- Add a real screenshot here for maximum impact -->
+
+## ✨ Features
+
+- **Only Free Models** — Automatically shows the best free models from OpenRouter (no paid models cluttering the list)
+- **Stunning UI** — Clean, modern design with full **light + dark mode** support
+- **Real-time Streaming** — Responses appear token-by-token with a stop button
+- **Beautiful Markdown** — Full GitHub-flavored markdown with syntax-highlighted code blocks and one-click copy
+- **Multiple Conversations** — Sidebar with persistent chat history
+- **Smart Model Picker** — Easily switch between high-quality free models
+- **Thoughtful Details** — Auto-generated chat titles, message regeneration, keyboard shortcuts, and smooth animations
+- **Secure by Design** — Your OpenRouter API key is stored only in your browser (never sent to any server except OpenRouter)
+
+## 🚀 Getting Started
+
+### 1. Get a Free OpenRouter API Key
+
+Visit [https://openrouter.ai/keys](https://openrouter.ai/keys) and create a free account. Many excellent models are available at no cost.
+
+### 2. Run Locally
 
 ```bash
+git clone https://github.com/YOUR_USERNAME/ai-chat.git
+cd ai-chat
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Add Your API Key
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Click the **gear icon** (Settings) in the top right
+2. Paste your `sk-or-...` key
+3. Click **Save Key**
 
-## Learn More
+You're ready to chat!
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js 16** (App Router + Turbopack)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Framer Motion** — smooth animations
+- **React Markdown** + remark-gfm
+- **Sonner** — elegant toast notifications
+- **Vercel** — Edge Functions for streaming
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```
+app/
+├── api/
+│   ├── chat/route.ts          # Streaming proxy to OpenRouter
+│   └── models/route.ts        # Fetches only free models
+├── layout.tsx
+├── page.tsx                   # Main chat interface
+├── globals.css
+components/
+└── ThemeProvider.tsx
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 💡 Tips
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- All models shown in the picker are **completely free**
+- Popular free models include Gemini 2.0 Flash, Llama 3.3 70B, Qwen 2.5, and more
+- Your chats and settings are saved in localStorage
+- Works great locally — just don’t deploy publicly with a real key without adding auth
+
+## 🚀 Deployment
+
+This project is optimized for Vercel:
+
+```bash
+vercel
+vercel --prod
+```
+
+## 🛣️ Future Improvements
+
+- [ ] Vision / image upload support
+- [ ] Message editing & branching
+- [ ] Export chats (Markdown / JSON)
+- [ ] System prompt presets
+- [ ] Usage tracking per model
+
+## 📄 License
+
+MIT License
+
+---
+
+**Made with care** for people who want a clean, beautiful way to talk to great AI models — for free. 
+
+If you like this project, consider starring it on GitHub!

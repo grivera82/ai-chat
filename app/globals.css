@@ -1,26 +1,169 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Theme-aware chat UI (Light is default, Dark via .dark class) */
+:root {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
+}
+
+/* Chat message styling */
+.message-bubble {
+  @apply px-4 py-3 rounded-3xl text-[15px] leading-relaxed;
+}
+
+.user-bubble {
+  @apply bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 rounded-br-md;
+}
+
+.assistant-bubble {
+  @apply bg-zinc-100 text-zinc-900 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-200 dark:border-zinc-800 rounded-bl-md;
+}
+
+/* Markdown content inside assistant */
+.assistant-bubble .markdown {
+  @apply prose prose-zinc max-w-none text-[15px] dark:prose-invert;
+}
+
+.assistant-bubble .markdown p {
+  @apply my-2 leading-relaxed;
+}
+
+.assistant-bubble .markdown p:first-child {
+  @apply mt-0;
+}
+
+.assistant-bubble .markdown p:last-child {
+  @apply mb-0;
+}
+
+.assistant-bubble .markdown ul, 
+.assistant-bubble .markdown ol {
+  @apply my-2 pl-5;
+}
+
+.assistant-bubble .markdown code {
+  @apply bg-zinc-200 px-1.5 py-0.5 rounded text-sm font-medium border border-zinc-300 dark:bg-zinc-950 dark:border-zinc-800;
+}
+
+.assistant-bubble .markdown pre {
+  @apply bg-zinc-200 p-4 rounded-2xl overflow-x-auto my-3 border border-zinc-300 dark:bg-zinc-950 dark:border-zinc-800;
+}
+
+.assistant-bubble .markdown pre code {
+  @apply bg-transparent p-0 border-0 text-sm;
+}
+
+/* Code block with header */
+.code-block {
+  @apply relative mt-3 mb-3 rounded-2xl overflow-hidden border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950;
+}
+
+.code-header {
+  @apply flex items-center justify-between px-4 py-2 bg-zinc-200 border-b border-zinc-300 text-xs dark:bg-zinc-900 dark:border-zinc-800;
+}
+
+.code-lang {
+  @apply text-zinc-500 font-medium uppercase tracking-wider dark:text-zinc-400;
+}
+
+/* Input area */
+.chat-input {
+  @apply w-full resize-none bg-transparent text-[15px] leading-relaxed placeholder:text-zinc-500 focus:outline-none max-h-[200px] overflow-y-auto;
+}
+
+/* Sidebar */
+.sidebar-chat-item {
+  @apply w-full text-left px-3 py-2.5 rounded-2xl transition-all flex items-start gap-3;
+}
+
+.sidebar-chat-item:hover {
+  @apply bg-zinc-100 dark:bg-zinc-900;
+}
+
+.sidebar-chat-item.active {
+  @apply bg-zinc-200 dark:bg-zinc-900 text-zinc-900 dark:text-white;
+}
+
+/* Model selector */
+.model-item {
+  @apply flex items-center justify-between w-full px-4 py-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer;
+}
+
+.model-item.selected {
+  @apply bg-zinc-200 dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700;
+}
+
+/* Scrollbars - Light first, then dark overrides */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Modal */
+.modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/60 dark:bg-black/70 p-4;
+}
+
+.modal-content {
+  @apply bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl w-full max-w-md shadow-2xl overflow-hidden;
+}
+
+/* Welcome screen */
+.welcome-card {
+  @apply max-w-md mx-auto text-center;
+}
+
+/* Streaming cursor */
+.streaming-cursor {
+  @apply inline-block w-1.5 h-4 bg-zinc-900 dark:bg-white align-[-2px] ml-0.5 animate-pulse;
+}
+
+/* Nice button styles */
+.btn-primary {
+  @apply bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 font-medium px-5 h-10 rounded-2xl flex items-center justify-center gap-2 hover:bg-zinc-800 dark:hover:bg-zinc-200 active:bg-zinc-700 dark:active:bg-zinc-300 transition-colors disabled:opacity-50;
+}
+
+.btn-secondary {
+  @apply bg-zinc-100 hover:bg-zinc-200 border border-zinc-300 px-4 h-10 rounded-2xl flex items-center justify-center gap-2 transition-colors disabled:opacity-50 text-sm dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:border-zinc-700;
+}
+
+.btn-ghost {
+  @apply hover:bg-zinc-100 px-3 h-9 rounded-2xl flex items-center justify-center gap-2 transition-colors text-sm dark:hover:bg-zinc-900;
+}
+
+/* Settings input */
+.input {
+  @apply w-full bg-white border border-zinc-300 focus:border-zinc-400 rounded-2xl px-4 py-3 text-sm placeholder:text-zinc-400 focus:outline-none transition-colors dark:bg-zinc-950 dark:border-zinc-800 dark:focus:border-zinc-600 dark:placeholder:text-zinc-500;
+}
+
+/* Message actions */
+.message-actions {
+  @apply opacity-0 group-hover:opacity-100 transition-opacity flex gap-1;
 }
