@@ -29,7 +29,7 @@ Visit [https://openrouter.ai/keys](https://openrouter.ai/keys) and create a free
 ### 2. Run Locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ai-chat.git
+git clone https://github.com/grivera82/ai-chat.git
 cd ai-chat
 npm install
 npm run dev
