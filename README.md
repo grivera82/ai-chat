@@ -6,13 +6,10 @@ Built with Next.js and designed for a delightful experience — no clutter, just
 
 **[Live Demo](https://ai-chat-liart-pi.vercel.app)**
 
-![AI Chat Interface](https://github.com/user-attachments/assets/placeholder)  
-<!-- Add a real screenshot here for maximum impact -->
-
 ## ✨ Features
 
 - **Only Free Models** — Automatically shows the best free models from OpenRouter (no paid models cluttering the list)
-- **Stunning UI** — Clean, modern design with full **light + dark mode** support
+- **Stunning UI** — Clean, modern dark-themed interface with smooth animations
 - **Real-time Streaming** — Responses appear token-by-token with a stop button
 - **Beautiful Markdown** — Full GitHub-flavored markdown with syntax-highlighted code blocks and one-click copy
 - **Multiple Conversations** — Sidebar with persistent chat history
